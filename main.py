@@ -27,7 +27,7 @@ async def setup_redis() - None:
     await redis.set('telegram_bot_state', json.dumps(DATABASE))
     asyncio.create_task(redis.close())
 
-async def update_redis() - None:
+async def update_redis():
     """
     Updates the Redis database with the current bot state.
     """
@@ -35,7 +35,7 @@ async def update_redis() - None:
     await redis.set('telegram_bot_state', json.dumps(DATABASE))
     asyncio.create_task(redis.close())
 
-async def setup(message: types.Message) - None:
+async def setup(message: types.Message):
     """
     Guided setup procedure for the bot configuration.
     """
@@ -83,7 +83,7 @@ async def setup(message: types.Message) - None:
     await update_redis()
     await message.answer("Bot state saved. The setup process is complete. You can now use the /start command to start the bot.")
 
-async def add_source(message: types.Message) - None:
+async def add_source(message: types.Message):
     """
     Adds a source channel to the bot configuration.
     """
@@ -100,7 +100,7 @@ async def add_source(message: types.Message) - None:
     else:
         await message.answer(f"{source_channel} is already a source channel.")
 
-async def set_destination(message: types.Message) - None:
+async def set_destination(message: types.Message):
     """
     Sets the destination channel for the bot.
     """
@@ -114,7 +114,7 @@ async def set_destination(message: types.Message) - None:
     await update_redis()
     await message.answer(f"{destination_channel} has been set as the destination channel.")
 
-    async def start_bot() - None:
+    async def start_bot():
     """
     Starts the bot and begins processing messages.
     """
@@ -136,7 +136,7 @@ async def set_destination(message: types.Message) - None:
     await bot.start_polling()
     await bot.idle()
 
-async def process_message(message: types.Message) - None:
+async def process_message(message: types.Message):
     """
     Processes a new message from a source channel and forwards it to the destination channel.
     """
